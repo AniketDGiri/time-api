@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .grid-container {
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: repeat(1, 2fr);
+        gap: 10px;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+
+      .grid-item {
+        padding-top: 2px;
+        padding: 10px;
+        text-align: left;
+      }
+
+      .headingDiv {
+        font-weight: 900;
+        text-align: left;
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1 style="margin-top: 40px; margin-left: 20px">Featured Voices</h1>
+    <div class="grid-container">
+      <div class="grid-item">{%HEADINGCARD%}</div>
+    </div>
+  </body>
+</html>
