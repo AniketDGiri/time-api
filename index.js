@@ -40,7 +40,7 @@ const webServer = http.createServer((req, res) => {
     //   updatedOverviewHTML
     // );
 
-    res.end(JSON.stringify(detailsData));
+    res.end(data);
   } else {
     res.end("Page not found");
   }
