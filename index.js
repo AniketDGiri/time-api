@@ -8,11 +8,8 @@ const url = require("url");
 
 const fs = require("fs");
 
-const overviewData = fs.readFileSync(`${__dirname}/views/times.html`, "utf-8");
-const cardsData = fs.readFileSync(`${__dirname}/views/cards.html`, "utf-8");
-
-const data = fs.readFileSync(`${__dirname}/data/timesData.json`, "utf-8");
-detailsData = JSON.parse(data);
+// const overviewData = fs.readFileSync(`${__dirname}/views/times.html`, "utf-8");
+// const cardsData = fs.readFileSync(`${__dirname}/views/cards.html`, "utf-8");
 
 const replaceTemplate = (item, overviewData) => {
   let output = overviewData.replace(/{%HEADINGNAME%}/g, item.title);
@@ -26,21 +23,24 @@ const webServer = http.createServer((req, res) => {
   console.log(pathName);
   if (pathName === "/getTimeStories" && req.method === "GET") {
     res.writeHead(200, {
-      //   "content-type": "application/json",
-      "content-type": "text/html",
+      "content-type": "application/json",
+      // "content-type": "text/html",
     });
 
+    const data = fs.readFileSync(`${__dirname}/data/timesData.json`, "utf-8");
+    detailsData = JSON.parse(data);
+
     //replacing the HTML file content with the API response
-    const updatedOverviewHTML = detailsData
-      .map((item) => replaceTemplate(item, cardsData))
-      .join("");
+    // const updatedOverviewHTML = detailsData
+    //   .map((item) => replaceTemplate(item, cardsData))
+    //   .join("");
 
-    const finalHTML = overviewData.replace(
-      /{%HEADINGCARD%}/,
-      updatedOverviewHTML
-    );
+    // const finalHTML = overviewData.replace(
+    //   /{%HEADINGCARD%}/,
+    //   updatedOverviewHTML
+    // );
 
-    res.end(finalHTML);
+    res.end(JSON.stringify(detailsData));
   } else {
     res.end("Page not found");
   }
